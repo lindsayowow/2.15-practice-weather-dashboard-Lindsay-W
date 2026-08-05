@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import com.example.WeatherDashboard.service.WeatherService;
 import com.example.WeatherDashboard.model.WeatherInfo;
 
+import java.util.Scanner;
+
 
 @SpringBootApplication
 public class WeatherDashboardApplication {
@@ -19,9 +21,15 @@ public class WeatherDashboardApplication {
 	@Bean
 	public CommandLineRunner testWeather(WeatherService weatherService) {
 		return args -> {
-			WeatherInfo info = weatherService.getWeatherInfo("London");
+			Scanner scanner = new Scanner(System.in);
+
+			System.out.print("Enter a city: ");
+			String city = scanner.nextLine();
+
+			WeatherInfo info = weatherService.getWeatherInfo(city);
 			System.out.println(info);
 		};
 	}
+
 
 }
