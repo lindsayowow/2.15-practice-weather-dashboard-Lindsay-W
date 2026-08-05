@@ -1,6 +1,11 @@
 package com.example.WeatherDashboard.service;
 
-import com.WeatherDashboard.config.WeatherAPIConfig;
+import com.example.WeatherDashboard.config.WeatherAPIConfig;
+import com.example.WeatherDashboard.model.WeatherInfo;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,6 +14,7 @@ public class WeatherService {
 
     private final WeatherAPIConfig apiConfig;
     private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public WeatherService(WeatherAPIConfig apiConfig) {
         this.apiConfig = apiConfig;
@@ -22,4 +28,18 @@ public class WeatherService {
 
         return restTemplate.getForObject(url, String.class);
     }
+
+    public WeatherInfo getWeatherInfo(String city) throws Exception {
+        String json = getRawWeatherJson(city);
+        JsonNode root = objectMapper.readTree(json); // this will throw an exception if JSON is bad
+
+
+        String cityName = root.path("name").asText();
+        double temperature = root.path("main").path("temp").asDouble();
+        int humidity = root.path("main").path("humidity").asInt();
+        String description = root.path("weather").get(0).path("description").asText();
+
+        return new WeatherInfo(cityName, temperature, humidity, description);
+    }
+
 }
