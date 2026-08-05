@@ -23,11 +23,19 @@ public class WeatherDashboardApplication {
 		return args -> {
 			Scanner scanner = new Scanner(System.in);
 
-			System.out.print("Enter a city: ");
-			String city = scanner.nextLine();
+			while (true) {
+				System.out.print("Enter a city (or type 'exit' to quit): ");
+				String city = scanner.nextLine();
 
-			WeatherInfo info = weatherService.getWeatherInfo(city);
-			System.out.println(info);
+				if (city.equalsIgnoreCase("exit")) {
+					break;
+				}
+
+				WeatherInfo info = weatherService.getWeatherInfo(city);
+				System.out.println(info);
+				System.out.println();
+			}
+
 		};
 	}
 
