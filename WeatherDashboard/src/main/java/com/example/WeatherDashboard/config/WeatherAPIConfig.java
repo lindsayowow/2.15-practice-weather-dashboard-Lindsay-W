@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class WeatherAPIConfig {
 
-    @Value("${weather.api.key}")
+    @Value("${WEATHER_API_KEY}")
     private String apiKey;
 
     public String getApiKey() {
         return apiKey;
     }
 }
+
