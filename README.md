@@ -1,4 +1,4 @@
-# 2.15-practice-weather-dashboard-LIndsay-W
+# 2.15-practice-weather-dashboard-Lindsay-W
 Using APIs in a Full-Stack Application 
 Practice: Weather Dashboard with API request 
 Instructions 
