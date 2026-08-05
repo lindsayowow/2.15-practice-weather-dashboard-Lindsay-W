@@ -1,6 +1,6 @@
 package com.example.WeatherDashboard.service;
 
-import com.WeatherDashboard.config.WeatherAPIConfig;
+import com.example.WeatherDashboard.config.WeatherAPIConfig;
 import com.example.WeatherDashboard.model.WeatherInfo;
 
 import org.springframework.stereotype.Service;
