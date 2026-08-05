@@ -3,12 +3,11 @@ package com.example.WeatherDashboard.service;
 import com.example.WeatherDashboard.config.WeatherAPIConfig;
 import com.example.WeatherDashboard.model.WeatherInfo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.JsonNode;
-
 
 @Service
 public class WeatherService {
