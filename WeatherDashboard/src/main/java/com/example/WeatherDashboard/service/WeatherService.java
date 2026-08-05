@@ -29,11 +29,12 @@ public class WeatherService {
         return restTemplate.getForObject(url, String.class);
     }
 
-    public WeatherInfo getWeatherInfo(String city) {
+    public WeatherInfo getWeatherInfo(String city) throws Exception {
         String json = getRawWeatherJson(city);
-        JsonNode root = objectMapper.readTree(json);
+        JsonNode root = objectMapper.readTree(json); // this will throw an exception if JSON is bad
 
-        String cityName = root.path("name").asString();
+
+        String cityName = root.path("name").asText();
         double temperature = root.path("main").path("temp").asDouble();
         int humidity = root.path("main").path("humidity").asInt();
         String description = root.path("weather").get(0).path("description").asText();
